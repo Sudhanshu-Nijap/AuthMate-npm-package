@@ -1,0 +1,29 @@
+{
+  "name": "create-authmate",
+  "version": "1.0.0",
+  "description": "CLI to create apps with authentication",
+  "type": "module",
+  "bin": {
+    "create-authmate": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"No tests yet\""
+  },
+  "keywords": [
+    "vite",
+    "react",
+    "auth",
+    "cli",
+    "firebase",
+    "supabase",
+    "clerk"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "fs-extra": "^11.3.3",
+    "inquirer": "^8.2.7",
+    "picocolors": "^1.1.1"
+  }
+}

@@ -1,0 +1,94 @@
+:root {
+    font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: light;
+    --primary-bg: #f8fafc;
+    --secondary-bg: #ffffff;
+    --accent-color: #8fdb47;
+    --accent-glow: rgba(143, 219, 71, 0.3);
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+
+    --card-bg: rgba(255, 255, 255, 0.65);
+    --card-border: rgba(255, 255, 255, 0.8);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+
+    color: var(--text-main);
+    background-color: var(--primary-bg);
+    background-image:
+        radial-gradient(at 0% 0%, hsla(234, 59%, 90%, 1) 0, transparent 50%),
+        radial-gradient(at 50% 0%, hsla(85, 62%, 95%, 1) 0, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(234, 59%, 95%, 1) 0, transparent 50%);
+    background-attachment: fixed;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+    background: linear-gradient(to left, #1a2263, #8fdb47);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5em;
+    text-shadow: 0 0 30px var(--accent-glow);
+}
+
+button {
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 0.8em 1.6em;
+    font-size: 1.1em;
+    font-weight: 600;
+    font-family: inherit;
+    background-color: white;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-main);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+button:hover {
+    border-color: var(--accent-color);
+    background-color: #f8fafc;
+    box-shadow: 0 0 15px var(--accent-glow);
+    transform: translateY(-2px);
+    color: var(--accent-color);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+a {
+    font-weight: 500;
+    color: #1a2263;
+    text-decoration: inherit;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #8fdb47;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+}
