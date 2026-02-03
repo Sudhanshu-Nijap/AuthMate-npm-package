@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { auth, googleProvider } from '../auth/firebase';
 import { Link, useNavigate } from 'react-router-dom';
 import authmateLogo from '/authmate.svg';
@@ -23,7 +23,13 @@ export default function Login() {
         e.preventDefault();
         setError('');
         try {
-            await signInWithEmailAndPassword(auth, email, password);
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            if (!userCredential.user.emailVerified) {
+                await signOut(auth);
+                alert("Please verify your email to log in.");
+                setError("Email not verified. Please check your inbox.");
+                return;
+            }
             navigate('/dashboard');
         } catch (err) {
             setError(err.message);

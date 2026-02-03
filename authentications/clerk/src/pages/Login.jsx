@@ -1,6 +1,6 @@
 import { SignIn, useAuth } from "@clerk/clerk-react";
 import authmateLogo from '/authmate.svg';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function Login() {

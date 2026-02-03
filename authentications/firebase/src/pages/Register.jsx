@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithPopup, sendEmailVerification, signOut } from 'firebase/auth';
 import { auth, googleProvider } from '../auth/firebase';
 import { Link, useNavigate } from 'react-router-dom';
 import authmateLogo from '/authmate.svg';
@@ -23,10 +23,18 @@ export default function Register() {
         e.preventDefault();
         setError('');
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
-            navigate('/dashboard');
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            await sendEmailVerification(userCredential.user);
+            await signOut(auth);
+            alert("Registration successful! Please check your email to verify your account before logging in.");
+            navigate('/login');
         } catch (err) {
-            setError(err.message);
+            if (err.code === 'auth/email-already-in-use') {
+                alert("Email already associated with an account. Please log in.");
+                setError("Email already in use. Please log in.");
+            } else {
+                setError(err.message);
+            }
         }
     };
 

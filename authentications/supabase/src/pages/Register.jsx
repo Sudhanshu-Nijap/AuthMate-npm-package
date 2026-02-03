@@ -34,9 +34,8 @@ export default function Register() {
                 password,
             });
             if (error) throw error;
-            setMsg('Registration successful! Check your email for confirmation.');
-            // Optional: Navigate to login after some time or immediately if no email confirmation needed
-            // navigate('/login'); 
+            alert('Registration successful! Please check your email to verify your account before logging in.');
+            navigate('/login');
         } catch (err) {
             setError(err.message);
         }

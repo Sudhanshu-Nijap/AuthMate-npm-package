@@ -1,4 +1,5 @@
 import { UserButton, useUser } from "@clerk/clerk-react";
+import { Link } from "react-router-dom";
 import authmateLogo from '/authmate.svg';
 
 export default function Dashboard() {

@@ -27,14 +27,25 @@ export default function Login() {
         e.preventDefault();
         setError('');
         try {
-            const { error } = await supabase.auth.signInWithPassword({
+            const { data, error } = await supabase.auth.signInWithPassword({
                 email,
                 password,
             });
             if (error) throw error;
+            if (data?.user && !data.user.email_confirmed_at) {
+                await supabase.auth.signOut();
+                alert("Please verify your email to log in.");
+                setError("Email not verified. Please check your inbox.");
+                return;
+            }
             navigate('/dashboard');
         } catch (err) {
-            setError(err.message);
+            if (err.message.includes("Email not confirmed")) {
+                alert("Please verify your email to log in.");
+                setError("Email not verified. Please check your inbox.");
+            } else {
+                setError(err.message);
+            }
         }
     };
 

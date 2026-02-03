@@ -1,6 +1,6 @@
 import { SignUp, useAuth } from "@clerk/clerk-react";
 import authmateLogo from '/authmate.svg';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function Register() {
@@ -24,7 +24,7 @@ export default function Register() {
             <p style={{ marginBottom: '2rem', color: 'var(--text-muted)' }}>Get started with AuthMate today</p>
 
             <div className="auth-card-wrapper">
-                <SignUp signInUrl="/login" forceRedirectUrl="/dashboard" />
+                <SignUp signInUrl="/login" forceRedirectUrl="/login" />
             </div>
         </div>
     );
