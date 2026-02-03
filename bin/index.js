@@ -14,30 +14,45 @@ const __filename = fileURLToPath(import.meta.url); // converts file url to file 
 const __dirname = path.dirname(__filename); // returns the directory name of the file path
 
 async function main() {
+    // Parse command line arguments
+    const args = process.argv.slice(2);
+    let projectName = args[0] && !args[0].startsWith('--') ? args[0] : null;
+    let authProvider = null;
+
+    if (args.includes('--firebase')) authProvider = 'firebase';
+    if (args.includes('--supabase')) authProvider = 'supabase';
+    if (args.includes('--clerk')) authProvider = 'clerk';
+
     // 1. Project name
-    const { projectName } = await inquirer.prompt([
-        {
-            type: "input",
-            name: "projectName",
-            message: "Enter project name:",
-            default: "authmate-app"
-        }
-    ]);
+    if (!projectName) {
+        const response = await inquirer.prompt([
+            {
+                type: "input",
+                name: "projectName",
+                message: "Enter project name:",
+                default: "authmate-app"
+            }
+        ]);
+        projectName = response.projectName;
+    }
 
     // 2. Auth provider (firebase, supabase, clerk)
-    const { authProvider } = await inquirer.prompt([
-        {
-            type: "list",
-            name: "authProvider",
-            message: "Select authentication provider",
-            choices: [
-                { name: chalk.yellow("Firebase"), value: "firebase" },
-                { name: chalk.green("Supabase"), value: "supabase" },
-                { name: chalk.magenta("Clerk"), value: "clerk" }
-            ],
-            default: "firebase"
-        }
-    ]);
+    if (!authProvider) {
+        const response = await inquirer.prompt([
+            {
+                type: "list",
+                name: "authProvider",
+                message: "Select authentication provider",
+                choices: [
+                    { name: chalk.yellow("Firebase"), value: "firebase" },
+                    { name: chalk.green("Supabase"), value: "supabase" },
+                    { name: chalk.magenta("Clerk"), value: "clerk" }
+                ],
+                default: "firebase"
+            }
+        ]);
+        authProvider = response.authProvider;
+    }
 
     // 3. Authenticator path (template of authenticator)
     const authenticatorPath = path.join(
