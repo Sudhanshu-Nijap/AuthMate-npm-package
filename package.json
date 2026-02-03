@@ -18,7 +18,7 @@
     "supabase",
     "clerk"
   ],
-  "author": "",
+  "author": "Sudhanshu Nijap",
   "license": "ISC",
   "dependencies": {
     "chalk": "^5.6.2",
