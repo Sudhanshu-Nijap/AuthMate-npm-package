@@ -11,6 +11,10 @@ export default function Login() {
     const navigate = useNavigate();
 
     const handleGoogleLogin = async () => {
+        if (!auth) {
+            alert("Firebase is not configured. Please add keys to .env");
+            return;
+        }
         try {
             await signInWithPopup(auth, googleProvider);
             navigate('/dashboard');
@@ -21,6 +25,10 @@ export default function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        if (!auth) {
+            alert("Firebase is not configured. Please add keys to .env");
+            return;
+        }
         setError('');
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);

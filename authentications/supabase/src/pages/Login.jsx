@@ -10,6 +10,10 @@ export default function Login() {
     const navigate = useNavigate();
 
     const handleGoogleLogin = async () => {
+        if (!supabase) {
+            alert("Supabase is not configured. Please add keys to .env");
+            return;
+        }
         try {
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'google',
@@ -25,6 +29,10 @@ export default function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        if (!supabase) {
+            alert("Supabase is not configured. Please add keys to .env");
+            return;
+        }
         setError('');
         try {
             const { data, error } = await supabase.auth.signInWithPassword({

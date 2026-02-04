@@ -17,6 +17,11 @@ export default function Home() {
                     <img src={authmateLogo} className="logo authmate" alt="AuthMate logo" />
                 </a>
             </div>
+            {!import.meta.env.VITE_FIREBASE_API_KEY && (
+                <div style={{ backgroundColor: '#ffcc00', color: '#000', padding: '10px', borderRadius: '5px', marginBottom: '20px' }}>
+                    <strong>Warning:</strong> Missing Firebase API Key. Please add your config to <code>.env</code>.
+                </div>
+            )}
             <h1>AuthMate</h1>
             <p className="read-the-docs">
                 The ultimate authentication solution for your React apps.

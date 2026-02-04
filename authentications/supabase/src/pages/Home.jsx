@@ -17,6 +17,11 @@ export default function Home() {
                     <img src={authmateLogo} className="logo authmate" alt="AuthMate logo" />
                 </a>
             </div>
+            {(!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) && (
+                <div style={{ backgroundColor: '#ffcc00', color: '#000', padding: '10px', borderRadius: '5px', marginBottom: '20px' }}>
+                    <strong>Warning:</strong> Missing Supabase keys. Please add them to your <code>.env</code> file.
+                </div>
+            )}
             <h1>AuthMate</h1>
             <p className="read-the-docs">
                 The ultimate authentication solution for your React apps.

@@ -11,6 +11,10 @@ export default function Register() {
     const navigate = useNavigate();
 
     const handleGoogleRegister = async () => {
+        if (!auth) {
+            alert("Firebase is not configured. Please add keys to .env");
+            return;
+        }
         try {
             await signInWithPopup(auth, googleProvider);
             navigate('/dashboard');
@@ -21,6 +25,10 @@ export default function Register() {
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        if (!auth) {
+            alert("Firebase is not configured. Please add keys to .env");
+            return;
+        }
         setError('');
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);

@@ -11,6 +11,10 @@ export default function Register() {
     const navigate = useNavigate();
 
     const handleGoogleRegister = async () => {
+        if (!supabase) {
+            alert("Supabase is not configured. Please add keys to .env");
+            return;
+        }
         try {
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'google',
@@ -26,6 +30,10 @@ export default function Register() {
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        if (!supabase) {
+            alert("Supabase is not configured. Please add keys to .env");
+            return;
+        }
         setError('');
         setMsg('');
         try {
