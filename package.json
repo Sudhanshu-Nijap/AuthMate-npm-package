@@ -1,6 +1,6 @@
 {
   "name": "create-authmate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI to create apps with authentication",
   "type": "module",
   "bin": {
